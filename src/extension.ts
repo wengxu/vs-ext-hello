@@ -18,7 +18,19 @@ export function activate(context: vscode.ExtensionContext) {
         // The code you place here will be executed every time your command is executed
 
         // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World!');
+        //vscode.window.showInformationMessage('Hello World123!');
+
+        // display the number of characters selected 
+        var editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return; // no open text editor 
+        }
+
+        var selection = editor.selection;
+        var text = editor.document.getText(selection);
+
+        // display character length info in message box to user 
+        vscode.window.showInformationMessage('Selected Characters: ' + text.length);
     });
 
     context.subscriptions.push(disposable);
